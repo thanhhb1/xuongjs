@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "name": "TuBigBangg1",
+      "image": "https://cf.shopee.vn/file/sg-11134201-22100-1kmh7da6voiv20",
+      "price": "750000",
+      "description": "Đẹp lắm mng ơiiiiiiii",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "email": "admin10@gmail.com",
+      "password": "$2a$10$S480mjgeA2Zwwy6r9e41e.IKN9sFRMyf80BJOTEgum4zvm3n0rN5e",
+      "name": "Ngọc Bảo Anh Nguyễn",
+      "role": "user",
+      "id": 7
+    },
+    {
+      "email": "admin8@gmail.com",
+      "password": "$2a$10$6nfC1HJhPMpI4BxOvs7b3.P0ev2KGXTWRJw4yFtN61uPv1TbmsNG6",
+      "name": "Ngọc Bảo Anh Nguyễn",
+      "role": "admin",
+      "id": 8
+    }
+  ]
+}

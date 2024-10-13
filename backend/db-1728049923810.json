@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "name": "sdfsdf",
+      "image": "234234",
+      "price": "3243",
+      "description": "sdfsdfsdfsd",
+      "id": 1
+    },
+    {
+      "name": "Giày nữ ABC",
+      "image": "https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Apro/Apro_product_25081/dong-ho-treo-tu_main_946_1020.png.webp",
+      "price": "10000",
+      "description": "Mô tả",
+      "id": 2
+    }
+  ],
+  "users": []
+}

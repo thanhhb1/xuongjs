@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div class="border user xs-12" id="register">
+                    <h2>Dang ki tai khoan</h2>
+                    <form id="userfrm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ho ten cua ban</label>
+                            <input type="text" class="form-control" id="name" placeholder="nhap ho ten">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="nhap email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mat khau</label>
+                            <input type="password" class="form-control" id="password" placeholder="nhap mat khau">
+                        </div>
+                        <div class="mb-3 d-none " id="message">
+                            acjhkahc
+                        </div>
+                        <div class="mb-3 d-flex justify-content-center">
+                            <button class="btn btn-success">Dang ki tai khoan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script>
+        const name = document.getElementById('name')
+        const email = document.getElementById('email')
+        const password = document.getElementById('password')
+        const userfrm = document.getElementById('userfrm')
+        const message = document.getElementById('message')
+        userfrm.addEventListener('submit', async (e) => {
+            e.preventDefault() //ngăn chuyển hướng
+            message.innerHTML = ``
+            message.classList.add('d-none')
+            const data = {
+                name: name.value,
+                email: email.value,
+                password: password.value,
+                role: 'user'
+
+            }
+            if (validate(email.value, password.value)) {
+                try {
+                    const response = await fetch(`http://localhost:3000/register`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    })
+                    if (response.ok) {
+                        const user = await response.json()
+                        message.innerHTML = `
+                        <pre>Dang ki thanh cong</pre>
+                    `
+                        message.classList.remove('d-none')
+                        message.classList.remove('text-danger')
+                        message.classList.add('text-success')
+                        console.log(user);                        
+                        window.location = 'login.html'
+                    } else {
+                        message.innerHTML = `
+                        <ul>
+                            <li>Loi dang ki</li>    
+                        </ul>
+                        `
+                        message.classList.remove('d-none')
+                        message.classList.add('text-danger')
+                    }
+                } catch (error) {
+                    message.innerHTML = `
+                    <ul>
+                        <li>Loi dang ki</li>    
+                    </ul>
+                    `
+                    message.classList.remove('d-none')
+                    message.classList.add('text-danger')
+                }
+            } else {
+                message.innerHTML = `
+                    <ul>
+                        <li>Email phai dung dinh dang</li>    
+                        <li>Mat khau phai lon hon 5 ki tu</li>    
+                    </ul>
+                `
+                message.classList.remove('d-none')
+                message.classList.add('text-danger')
+            }
+            // call api gui thong tin dang ki
+
+        })
+        const validate = (email, password) => {
+            return email.indexOf('@') > 0 && email.indexOf('.') > 0 && password.length > 5
+        }
+    </script>
+</body>
+
+</html>
